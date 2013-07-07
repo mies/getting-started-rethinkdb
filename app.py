@@ -49,7 +49,7 @@ def home():
 @app.route("/bookmarks", methods=['GET'])
 def get_bookmarks():
   result = list(r.table('bookmarks').run(g.rdb_conn))
-  return json.dumps(selection)
+  return json.dumps(result)
 
 @app.route("/bookmarks", methods=['POST'])
 def create_bookmark():
