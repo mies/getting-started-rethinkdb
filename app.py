@@ -22,3 +22,22 @@ app.config.from_object(__name__)
 def before_request():
   pass
 
+@app.teardown_request
+def teardown_request():
+  pass
+
+@app.route("/", methods=['GET'])
+def home():
+  return render_template('bookmarks.html')
+
+@app.route("/bookmarks", methods=['GET'])
+def get_bookmarks():
+  pass
+
+@app.route("/bookmarks", methods=['POST'])
+def create_bookmark():
+  pass
+
+@app.route("/bookmarks/<string:bookmark_id>/", methods=['GET'])
+def get_bookmark():
+  pass
