@@ -44,7 +44,9 @@ def teardown_request(exception):
 
 @app.route("/", methods=['GET'])
 def home():
-  return render_template('bookmarks.html')
+  #return render_template('bookmarks.html')
+  result = list(r.table('bookmarks').run(g.rdb_conn))
+  return json.dumps(result)
 
 @app.route("/bookmarks", methods=['GET'])
 def get_bookmarks():
@@ -62,5 +64,6 @@ def get_bookmark():
 
 if __name__ == "__main__":
   port = int(os.getenv('PORT', 5000))
-  #dbSetup()
+  if os.getenv('CI') == 'true':
+    dbSetup()
   app.run(host='0.0.0.0', port=port, debug=True)
