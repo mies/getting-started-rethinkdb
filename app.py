@@ -46,7 +46,10 @@ def teardown_request(exception):
 def home():
   #return render_template('bookmarks.html')
   result = list(r.table('bookmarks').run(g.rdb_conn))
-  return json.dumps(result)
+  if result == None:
+    return json.dumps({'warning': 'no bookmarks stored yet'})
+  else:
+    return json.dumps(result)
 
 @app.route("/bookmarks", methods=['GET'])
 def get_bookmarks():
