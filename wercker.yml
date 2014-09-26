@@ -7,6 +7,11 @@ build:
   steps:
     # A step that executes `pip install` command
     - pip-install
+    
+    - script:
+        name: run connection test
+        code: |
+          python test.py
 
     # A custom script step, name value is used in the UI
     # and the code value contains the command that get executed
